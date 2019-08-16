@@ -1076,10 +1076,16 @@ int InstrEmit_stfsx(PPCHIRBuilder& f, const InstrData& i) {
 // Cache management (A-27)
 
 int InstrEmit_dcbf(PPCHIRBuilder& f, const InstrData& i) {
+
+    if (i.X.RB == 0)
+        return 0;
+
+    Value* val = f.Add(f.LoadGPR(i.X.RB), f.LoadConstantUint32(0x1000));
+    f.StoreGPR(i.X.RB, val);
   // No-op for now.
   // TODO(benvanik): use prefetch
   // XEINSTRNOTIMPLEMENTED();
-  f.Nop();
+  //f.Nop();
   return 0;
 }
 
