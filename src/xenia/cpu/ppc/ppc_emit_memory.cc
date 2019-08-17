@@ -1077,7 +1077,7 @@ int InstrEmit_stfsx(PPCHIRBuilder& f, const InstrData& i) {
 
 int InstrEmit_dcbf(PPCHIRBuilder& f, const InstrData& i) {
 
-    if (i.X.RB == 0)
+    if (i.X.RB != 11)
         return 0;
 
     Value* val = f.Add(f.LoadGPR(i.X.RB), f.LoadConstantUint32(0x1000));
