@@ -7,11 +7,14 @@
  ******************************************************************************
  */
 
+
 #include <sstream>
 
 #include "xenia/kernel/kernel_state.h"
 #include "xenia/kernel/util/shim_utils.h"
 #include "xenia/kernel/xam/user_profile.h"
+
+DEFINE_bool(signin_state, true, "Report that a user is signed in.", "Kernel");
 
 namespace xe {
 namespace kernel {

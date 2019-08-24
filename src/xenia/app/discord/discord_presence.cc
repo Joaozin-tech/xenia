@@ -10,6 +10,7 @@
 #include "discord_presence.h"
 #include "third_party/discord-rpc/include/discord_rpc.h"
 #include "xenia/base/string.h"
+#include <ctime>
 
 namespace xe {
 namespace discord {
@@ -27,14 +28,15 @@ void DiscordPresence::Initialize() {
   handlers.joinGame = &HandleDiscordJoinGame;
   handlers.joinRequest = &HandleDiscordJoinRequest;
   handlers.spectateGame = &HandleDiscordSpectateGame;
-  Discord_Initialize("606840046649081857", &handlers, 0, "");
+  Discord_Initialize("606873807201763359", &handlers, 0, "");
 }
 
 void DiscordPresence::NotPlaying() {
   DiscordRichPresence discordPresence = {};
   discordPresence.state = "Idle";
-  discordPresence.details = "Standby";
-  discordPresence.largeImageKey = "app";
+  discordPresence.largeImageKey = "default";
+  discordPresence.largeImageText = "Xenia - Experimental Xbox 360 Emulator";
+  discordPresence.startTimestamp = time(0);
   discordPresence.instance = 1;
   Discord_UpdatePresence(&discordPresence);
 }
@@ -44,10 +46,9 @@ void DiscordPresence::PlayingTitle(const std::wstring& game_title) {
   DiscordRichPresence discordPresence = {};
   discordPresence.state = "In Game";
   discordPresence.details = discord_game_title.c_str();
-  // TODO(gibbed): we don't have state icons yet.
-  // discordPresence.smallImageKey = "app";
-  // discordPresence.largeImageKey = "state_ingame";
-  discordPresence.largeImageKey = "app";
+  discordPresence.largeImageKey = "default";
+  discordPresence.largeImageText = "Xenia - Experimental Xbox 360 Emulator";
+  discordPresence.startTimestamp = time(0);
   discordPresence.instance = 1;
   Discord_UpdatePresence(&discordPresence);
 }

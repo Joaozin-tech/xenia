@@ -20,7 +20,7 @@
 #include "xenia/kernel/xboxkrnl/xboxkrnl_rtl.h"
 #include "xenia/xbox.h"
 
-DEFINE_int32(kernel_display_gamma_type, 1,
+DEFINE_int32(kernel_display_gamma_type, 2,
              "Display gamma type: 0 - linear, 1 - sRGB, 2 - TV (BT.709), "
              "3 - power specified via kernel_display_gamma_power.",
              "Kernel");
@@ -132,8 +132,8 @@ DECLARE_XBOXKRNL_EXPORT1(VdGetCurrentDisplayInformation, kVideo, kStub);
 void VdQueryVideoMode(pointer_t<X_VIDEO_MODE> video_mode) {
   // TODO(benvanik): get info from actual display.
   video_mode.Zero();
-  video_mode->display_width = 1280;
-  video_mode->display_height = 720;
+  video_mode->display_width = 1920;
+  video_mode->display_height = 1080;
   video_mode->is_interlaced = 0;
   video_mode->is_widescreen = 1;
   video_mode->is_hi_def = 1;
