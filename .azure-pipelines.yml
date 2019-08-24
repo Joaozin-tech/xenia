@@ -56,7 +56,12 @@ jobs:
       cd build\bin\Windows\$(configuration)
       7z a $(Build.ArtifactStagingDirectory)\xenia-$(Build.SourceBranchName).zip ..\..\..\..\LICENSE xenia.exe xenia.pdb
       7z a $(Build.ArtifactStagingDirectory)\xenia-vfs-dump-$(Build.SourceBranchName).zip ..\..\..\..\LICENSE xenia-vfs-dump.exe xenia-vfs-dump.pdb
-      D: & tree /a /f > $(Build.ArtifactStagingDirectory)\output.txt
+      cd ..\..\..\..
+      dir
+      cd ..
+      dir
+      cd ..
+      dir
     displayName: 'Create archives'
 
   - publish: $(Build.ArtifactStagingDirectory)
