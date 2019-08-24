@@ -43,25 +43,19 @@ jobs:
       xb setup
     displayName: 'Setup'
 
-  - script: xb build --config=$(configuration) --target=src\xenia-app --target=tests\xenia-cpu-ppc-tests --target=src\xenia-vfs-dump
+  - script: xb build --config=$(Configuration) --target=src\xenia-app --target=tests\xenia-cpu-ppc-tests --target=src\xenia-vfs-dump
     displayName: 'Build $(Configuration)'
 
   - script: |
       xb gentests
-      xb test --config=$(Configuration) --no_build
+      xb test --config=%Configuration% --no_build
       copy xenia-cpu-ppc-test.log $(Build.ArtifactStagingDirectory)
     displayName: 'Tests'
 
   - script: |
-      cd build\bin\Windows\$(configuration)
+      cd build\bin\Windows\$(Configuration)
       7z a $(Build.ArtifactStagingDirectory)\xenia-$(Build.SourceBranchName).zip ..\..\..\..\LICENSE xenia.exe xenia.pdb
       7z a $(Build.ArtifactStagingDirectory)\xenia-vfs-dump-$(Build.SourceBranchName).zip ..\..\..\..\LICENSE xenia-vfs-dump.exe xenia-vfs-dump.pdb
-      cd ..\..\..\..
-      dir
-      cd ..
-      dir
-      cd ..
-      dir
     displayName: 'Create archives'
 
   - publish: $(Build.ArtifactStagingDirectory)
