@@ -38,9 +38,6 @@ class Processor;
 }  // namespace cpu
 }  // namespace xe
 
-DECLARE_bool(headless);
-DECLARE_int32(language);
-
 namespace xe {
 namespace kernel {
 

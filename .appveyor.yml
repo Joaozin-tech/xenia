@@ -31,24 +31,24 @@ platform: Windows
 
 configuration:
   - Release
+  - Checked
 
 build_script:
-  - cmd: git checkout %appveyor_repo_branch%
-  - cmd: xb build --config=%CONFIGURATION% --target=src\xenia-app --target=src\xenia-vfs-dump
+  - cmd: xb build --config=%CONFIGURATION% --target=src\xenia-app --target=tests\xenia-cpu-ppc-tests --target=src\xenia-vfs-dump
 
 after_build:
   - cmd: |
-      7z a xenia-%appveyor_repo_branch%.zip LICENSE %APPVEYOR_BUILD_FOLDER%\build\bin\%PLATFORM%\%CONFIGURATION%\xenia.exe %APPVEYOR_BUILD_FOLDER%\readme.txt
-      7z a xenia-vfs-dump-%appveyor_repo_branch%.zip LICENSE %APPVEYOR_BUILD_FOLDER%\build\bin\%PLATFORM%\%CONFIGURATION%\xenia-vfs-dump.exe
+      7z a xenia-%appveyor_repo_branch%.zip LICENSE %APPVEYOR_BUILD_FOLDER%\build\bin\%PLATFORM%\%CONFIGURATION%\xenia.exe %APPVEYOR_BUILD_FOLDER%\build\bin\%PLATFORM%\%CONFIGURATION%\xenia.pdb
+      7z a xenia-vfs-dump-%appveyor_repo_branch%.zip LICENSE %APPVEYOR_BUILD_FOLDER%\build\bin\%PLATFORM%\%CONFIGURATION%\xenia-vfs-dump.exe %APPVEYOR_BUILD_FOLDER%\build\bin\%PLATFORM%\%CONFIGURATION%\xenia-vfs-dump.pdb
 
-# before_test:
-  # - cmd: xb gentests
+before_test:
+  - cmd: xb gentests
 
-# test_script:
-#  - cmd: xb test --config=%CONFIGURATION% --no_build
+test_script:
+  - cmd: xb test --config=%CONFIGURATION% --no_build
 
 artifacts:
-  # - path: xenia-cpu-ppc-test.log
+  - path: xenia-cpu-ppc-test.log
   - path: xenia-$(appveyor_repo_branch).zip
   - path: xenia-vfs-dump-$(appveyor_repo_branch).zip
 

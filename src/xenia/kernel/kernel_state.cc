@@ -27,11 +27,6 @@
 #include "xenia/kernel/xobject.h"
 #include "xenia/kernel/xthread.h"
 
-/*DEFINE_bool(headless, false,
-            "Don't display any UI, using defaults for prompts as needed.");*/
-
-DEFINE_int32(language, 1, "Change kernel language on startup.",	
-             "General");
 namespace xe {
 namespace kernel {
 

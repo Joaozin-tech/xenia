@@ -1,6 +1,6 @@
 <p align="center">
-    <a href="https://github.com/win98and95/xenia/tree/master-custom/assets/icon">
-        <img height="120px" src="https://raw.githubusercontent.com/win98and95/xenia/master-custom/assets/icon/128x128.png" />
+    <a href="https://github.com/xenia-project/xenia/tree/master/assets/icon">
+        <img height="120px" src="https://raw.githubusercontent.com/xenia-project/xenia/master/assets/icon/128.png" />
     </a>
 </p>
 
@@ -23,23 +23,8 @@ Discussing illegal activities will get you banned.
 
 Buildbot | Status
 -------- | ------
-[Windows](https://dev.azure.com/windows98and95/xenia/_build) | [![Build Status](https://dev.azure.com/windows98and95/xenia/_apis/build/status/illusion98.xenia?branchName=master_custom)](https://dev.azure.com/windows98and95/xenia/_build/latest?definitionId=1&branchName=master_custom) [![Build status](https://ci.appveyor.com/api/projects/status/n3h76k1mik1a8hfo?svg=true)](https://ci.appveyor.com/project/win98and95/xenia)
-
-## Changes
-
-Use BT.709 as the default gamma
-
-Restored old icon
-
-New config options added:
-
-* `signin_state` - User profile signed in
-  * = `1` - Signed in *(default)*
-  * = `0` - Signed out
-
-Thanks to [theTwist84](https://github.com/theTwist84) and [Prism019](https://github.com/Prism019) for the help!
-
-## Compatibility
+[Windows](https://ci.appveyor.com/project/benvanik/xenia/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/ftqiy86kdfawyx3a/branch/master?svg=true)](https://ci.appveyor.com/project/benvanik/xenia/branch/master)
+[Linux](https://travis-ci.org/xenia-project/xenia) | [![Build status](https://travis-ci.org/xenia-project/xenia.svg?branch=master)](https://travis-ci.org/xenia-project/xenia)
 
 Quite a few real games run. Quite a few don't.
 See the [Game compatibility list](https://github.com/xenia-project/game-compatibility/issues)
