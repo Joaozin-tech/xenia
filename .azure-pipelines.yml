@@ -56,7 +56,16 @@ jobs:
   - script: |
       dir
       copy xenia-cpu-ppc-test.log $(Build.ArtifactStagingDirectory)
-      cd build\bin\Windows\$(configuration)
+      cd build
+      dir
+      cd bin
+      dir
+      cd Windows
+      dir
+      cd %(configuration)
+      dir
+#      cd build\bin\Windows\$(configuration)
+      dir
       7z a $(Build.ArtifactStagingDirectory)\xenia-$(Build.SourceBranchName).zip ..\..\..\..\LICENSE xenia.exe xenia.pdb
       7z a $(Build.ArtifactStagingDirectory)\xenia-vfs-dump-$(Build.SourceBranchName).zip ..\..\..\..\LICENSE xenia-vfs-dump.exe xenia-vfs-dump.pdb
     displayName: 'Create archives'
