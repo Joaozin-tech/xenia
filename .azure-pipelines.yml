@@ -44,11 +44,11 @@ jobs:
     displayName: 'Setup'
 
   - script: xb build --config=$(configuration) --target=src\xenia-app --target=tests\xenia-cpu-ppc-tests --target=src\xenia-vfs-dump
-    displayName: 'Build $(configuration)'
+    displayName: 'Build $(Configuration)'
 
   - script: |
       xb gentests
-      xb test --config=$(configuration) --no_build
+      xb test --config=$(Configuration) --no_build
       dir
       copy xenia-cpu-ppc-test.log $(Build.ArtifactStagingDirectory)
     displayName: 'Tests'
@@ -62,8 +62,7 @@ jobs:
       dir
       cd Windows
       dir
-      cd %(configuration)
-      dir
+      cd $(Configuration)
       dir
       7z a $(Build.ArtifactStagingDirectory)\xenia-$(Build.SourceBranchName).zip ..\..\..\..\LICENSE xenia.exe xenia.pdb
       7z a $(Build.ArtifactStagingDirectory)\xenia-vfs-dump-$(Build.SourceBranchName).zip ..\..\..\..\LICENSE xenia-vfs-dump.exe xenia-vfs-dump.pdb
